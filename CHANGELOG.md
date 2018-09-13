@@ -4,6 +4,12 @@ documented here.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.17.0] - WIP
+### Added
+    * Add a `.len()` method to retrieve the size of a `MatrixVec`.
+### Removed
+    * Remove the `Deref` impl for `MatrixVec` as it could cause hard-to-understand compilation errors.
+
 ## [0.16.0]
 All dependencies have been updated to their latest versions.
 
