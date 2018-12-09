@@ -21,7 +21,7 @@ use alga::general::{ClosedAdd, ClosedMul, ClosedSub, Real, Ring};
 use base::allocator::{Allocator, SameShapeAllocator, SameShapeC, SameShapeR};
 use base::constraint::{DimEq, SameNumberOfColumns, SameNumberOfRows, ShapeConstraint};
 use base::dimension::{Dim, DimAdd, DimSum, IsNotStaticOne, U1, U2, U3};
-use base::iter::{MatrixIter, MatrixIterMut};
+use base::iter::{MatrixIter, MatrixIterMut, RowIter, RowIterMut, ColumnIter, ColumnIterMut};
 use base::storage::{
     ContiguousStorage, ContiguousStorageMut, Owned, SameShapeStorage, Storage, StorageMut,
 };
@@ -244,6 +244,16 @@ impl<N: Scalar, R: Dim, C: Dim, S: Storage<N, R, C>> Matrix<N, R, C, S> {
     #[inline]
     pub fn iter(&self) -> MatrixIter<N, R, C, S> {
         MatrixIter::new(&self.data)
+    }
+
+    #[inline]
+    pub fn row_iter(&self) -> RowIter<N, R, C, S> {
+        RowIter::new(self)
+    }
+
+    #[inline]
+    pub fn column_iter(&self) -> ColumnIter<N, R, C, S> {
+        ColumnIter::new(self)
     }
 
     /// Computes the row and column coordinates of the i-th element of this matrix seen as a
@@ -599,6 +609,18 @@ impl<N: Scalar, R: Dim, C: Dim, S: StorageMut<N, R, C>> Matrix<N, R, C, S> {
     #[inline]
     pub fn iter_mut(&mut self) -> MatrixIterMut<N, R, C, S> {
         MatrixIterMut::new(&mut self.data)
+    }
+
+    /// Mutably iterates through this matrix rows.
+    #[inline]
+    pub fn row_iter_mut(&mut self) -> RowIterMut<N, R, C, S> {
+        RowIterMut::new(self)
+    }
+
+    /// Mutably iterates through this matrix columns.
+    #[inline]
+    pub fn column_iter_mut(&mut self) -> ColumnIterMut<N, R, C, S> {
+        ColumnIterMut::new(self)
     }
 
     /// Gets a mutable reference to the i-th element of this matrix.
