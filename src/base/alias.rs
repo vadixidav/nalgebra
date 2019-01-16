@@ -13,17 +13,17 @@ use base::Matrix;
  *
  *
  */
-/// A statically sized column-major matrix with `R` rows and `C` columns.
+/// A column-major matrix with `R` rows and `C` columns.
 #[deprecated(note = "This matrix name contains a typo. Use MatrixMN instead.")]
 pub type MatrixNM<N, R, C> = Matrix<N, R, C, Owned<N, R, C>>;
 
-/// A statically sized column-major matrix with `R` rows and `C` columns.
+/// A column-major matrix with `R` rows and `C` columns.
 pub type MatrixMN<N, R, C> = Matrix<N, R, C, Owned<N, R, C>>;
 
-/// A statically sized column-major square matrix with `D` rows and columns.
+/// A column-major square matrix with `D` rows and columns.
 pub type MatrixN<N, D> = MatrixMN<N, D, D>;
 
-/// A dynamically sized column-major matrix.
+/// A heap-allocated, column-major, dynamically sized matrix.
 #[cfg(any(feature = "std", feature = "alloc"))]
 pub type DMatrix<N> = MatrixN<N, Dynamic>;
 
