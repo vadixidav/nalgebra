@@ -17,7 +17,7 @@ use base::{DefaultAllocator, Scalar};
 /// Every allocator must be both static and dynamic. Though not all implementations may share the
 /// same `Buffer` type.
 pub trait Allocator<N: Scalar, R: Dim, C: Dim = U1>: Any + Sized {
-    /// The type of buffer this allocator can instanciate.
+    /// The type of buffer this allocator can instantiate.
     type Buffer: ContiguousStorageMut<N, R, C> + Clone;
 
     /// Allocates a buffer with the given number of rows and columns without initializing its content.
